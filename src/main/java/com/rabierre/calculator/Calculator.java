@@ -15,15 +15,17 @@ public class Calculator {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         String input;
+
         do {
             input = scanner.next();
 
             if (exit(input)) break;
 
             List<String> values = valueCollector.parse(input);
-            printList(values);
+            // todo values to reverse polish notation
+
+            //printList(values); // todo test
         } while (true);
     }
 

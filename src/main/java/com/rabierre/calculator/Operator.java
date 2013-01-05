@@ -11,7 +11,10 @@ public enum Operator {
     PLUS("+"),
     MINUS("-"),
     MULTI("*"),
-    DIVDE("/");
+    DIVIDE("/"),
+    POWER("\\^"),
+    OPEN_BRACKET("\\("),
+    CLOSE_BRACKET("\\)");
 
     Operator(String value) {
     }
