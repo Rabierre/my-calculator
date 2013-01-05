@@ -1,5 +1,8 @@
 package com.rabierre.calculator;
 
+import java.util.List;
+import java.util.Scanner;
+
 /**
  * Created with IntelliJ IDEA.
  * User: seojihye
@@ -8,14 +11,35 @@ package com.rabierre.calculator;
  * To change this template use File | Settings | File Templates.
  */
 public class Calculator {
-    public void getFomular() {
-        // todo get user input
-    }
+    private static ValueCollector valueCollector = new ValueCollector();
 
     public static void main(String[] args) {
-        Parser.parse(args);
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println();
+        String input;
+        do {
+            input = scanner.next();
 
+            if (exit(input)) break;
+
+            List<String> values = valueCollector.parse(input);
+            printList(values);
+        } while (true);
+    }
+
+    private static void printList(List<String> values) {
+        for (String value : values) {
+            System.out.println(value + "\n");
+        }
+    }
+
+    private static boolean exit(String arg) {
+        if (arg == null) return false;
+
+        if ("EXIT".equals(arg.toUpperCase())) {
+            return true;
+        }
+
+        return false;
     }
 }
