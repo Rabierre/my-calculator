@@ -27,4 +27,12 @@ public class TokenUtil {
 
         return match.matches();
     }
+
+    public static boolean isOpenBracket(Token token) {
+        return token != null ? Operator.OPEN_BRACKET.getValue().equals(token.getValue()) : false;
+    }
+
+    public static boolean isCloseBracket(Token token) {
+        return token != null ? Operator.CLOSE_BRACKET.getValue().equals(token.getValue()) : false;
+    }
 }

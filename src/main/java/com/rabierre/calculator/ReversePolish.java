@@ -1,6 +1,7 @@
 package com.rabierre.calculator;
 
 import com.rabierre.calculator.core.Token;
+import com.rabierre.calculator.core.TokenUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +19,31 @@ public class ReversePolish {
 
     public List<Token> doSomething(List<Token> tokens) {
         List<Token> list = new ArrayList<>();
+        int bracketCount = 0;
 
         for (Token token : tokens) {
             if (token.isOperator()) {
-                if (isHigherThanLastOne(token)) {
+
+                if (TokenUtil.isOpenBracket(token)) {
+                    bracketCount++;
+                } else if (TokenUtil.isCloseBracket(token)) {
+                    bracketCount--;
+
+                    while (!stack.empty() && !TokenUtil.isOpenBracket(stack.peek())) {
+                        list.add(stack.pop());
+                    }
+                    try {
+                        stack.pop();
+                    } catch (Exception e) {
+                        throw new IllegalArgumentException("there are " + Math.abs(bracketCount) + " open bracket is missing.");
+                    }
+
+                    continue;
+                } else if (isHigherThanLastOne(token)) {
                     list.add(stack.pop());
                 }
                 stack.push(token);
+
             } else {    // token is variable
                 list.add(token);
             }
@@ -34,11 +53,21 @@ public class ReversePolish {
             list.add(stack.pop());
         }
 
+        checkBrackets(bracketCount);
+
         return list;
     }
 
+    private void checkBrackets(int bracketCount) {
+        if (bracketCount > 0) {
+            throw new IllegalArgumentException("there are " + bracketCount + " close bracket is missing.");
+        } else if (bracketCount < 0) {
+            throw new IllegalArgumentException("there are " + Math.abs(bracketCount) + " open bracket is missing.");
+        }
+    }
+
     private boolean isHigherThanLastOne(Token token) {
-        if (!stack.empty() ? token.getPriority() > stack.peek().getPriority() : token != null)
+        if (!stack.empty() ? token.getPriority() >= stack.peek().getPriority() : token != null)
             return false;
         return true;
     }

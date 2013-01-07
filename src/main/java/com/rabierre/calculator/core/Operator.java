@@ -8,13 +8,13 @@ package com.rabierre.calculator.core;
  * To change this template use File | Settings | File Templates.
  */
 public enum Operator {
-    PLUS("\\+"),
-    MINUS("\\-"),
-    MULTI("\\*"),
-    DIVIDE("\\/"),
-    POWER("\\^"),
-    OPEN_BRACKET("\\("),
-    CLOSE_BRACKET("\\)");
+    PLUS("+"),
+    MINUS("-"),
+    MULTI("*"),
+    DIVIDE("/"),
+    POWER("^"),
+    OPEN_BRACKET("("),
+    CLOSE_BRACKET(")");
 
     private String value;
 
@@ -26,11 +26,4 @@ public enum Operator {
         return value;
     }
 
-    public static boolean isOpenBracket(String value) {
-        return value != null ? OPEN_BRACKET.value.equals(value) : false;
-    }
-
-    public boolean isCloseBracket(String value) {
-        return value != null ? CLOSE_BRACKET.value.equals(value) : false;
-    }
 }
