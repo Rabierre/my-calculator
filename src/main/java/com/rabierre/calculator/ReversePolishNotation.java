@@ -14,10 +14,10 @@ import java.util.Stack;
  * Time: 오후 12:31
  * To change this template use File | Settings | File Templates.
  */
-public class ReversePolish {
+public class ReversePolishNotation {
     Stack<Token> stack = new Stack();
 
-    public List<Token> doSomething(List<Token> tokens) {
+    public List<Token> process(List<Token> tokens) {
         List<Token> list = new ArrayList<>();
         int bracketCount = 0;
 
@@ -29,17 +29,17 @@ public class ReversePolish {
                 } else if (TokenUtil.isCloseBracket(token)) {
                     bracketCount--;
 
-                    while (!stack.empty() && !TokenUtil.isOpenBracket(stack.peek())) {
-                        list.add(stack.pop());
-                    }
                     try {
+                        while (!TokenUtil.isOpenBracket(stack.peek())) {
+                            list.add(stack.pop());
+                        }
                         stack.pop();
                     } catch (Exception e) {
                         throw new IllegalArgumentException("there are " + Math.abs(bracketCount) + " open bracket is missing.");
                     }
-
                     continue;
-                } else if (isHigherThanLastOne(token)) {
+
+                } else if (isPriorityLower(token)) {
                     list.add(stack.pop());
                 }
                 stack.push(token);
@@ -66,7 +66,7 @@ public class ReversePolish {
         }
     }
 
-    private boolean isHigherThanLastOne(Token token) {
+    private boolean isPriorityLower(Token token) {
         if (!stack.empty() ? token.getPriority() >= stack.peek().getPriority() : token != null)
             return false;
         return true;

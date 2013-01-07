@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class Calculator {
     private static SimpleTokenizer tokenizer = new SimpleTokenizer();
-    private static ReversePolish reverser = new ReversePolish();
+    private static ReversePolishNotation reverser = new ReversePolishNotation();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -29,7 +29,7 @@ public class Calculator {
             List<Token> tokens = tokenizer.tokenize(input);
             TokenUtil.print(tokens);
 
-            List<Token> reversePolishedTokens = reverser.doSomething(tokens);
+            List<Token> reversePolishedTokens = reverser.process(tokens);
             TokenUtil.print(reversePolishedTokens);
         } while (true);
     }

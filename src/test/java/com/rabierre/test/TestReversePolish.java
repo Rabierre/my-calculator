@@ -1,6 +1,6 @@
 package com.rabierre.test;
 
-import com.rabierre.calculator.ReversePolish;
+import com.rabierre.calculator.ReversePolishNotation;
 import com.rabierre.calculator.core.Token;
 import com.rabierre.calculator.core.TokenUtil;
 import junit.framework.Assert;
@@ -29,7 +29,7 @@ public class TestReversePolish {
         tokens.add(new Token("+", true));
         tokens.add(new Token("2", false));
 
-        List<Token> actual  = new ReversePolish().doSomething(tokens);
+        List<Token> actual  = new ReversePolishNotation().process(tokens);
 
         TokenUtil.print(tokens);
         TokenUtil.print(actual);
@@ -53,7 +53,7 @@ public class TestReversePolish {
         tokens.add(new Token("+", true));
         tokens.add(new Token("3", false));
 
-        List<Token> actual = new ReversePolish().doSomething(tokens);
+        List<Token> actual = new ReversePolishNotation().process(tokens);
 
         TokenUtil.print(tokens);
         TokenUtil.print(actual);
@@ -77,7 +77,7 @@ public class TestReversePolish {
         tokens.add(new Token("/", true));
         tokens.add(new Token("3", false));
 
-        List<Token> actual = new ReversePolish().doSomething(tokens);
+        List<Token> actual = new ReversePolishNotation().process(tokens);
 
         TokenUtil.print(tokens);
         TokenUtil.print(actual);
@@ -103,7 +103,7 @@ public class TestReversePolish {
         tokens.add(new Token("/", true));
         tokens.add(new Token("3", false));
 
-        List<Token> actual = new ReversePolish().doSomething(tokens);
+        List<Token> actual = new ReversePolishNotation().process(tokens);
 
         TokenUtil.print(tokens);
         TokenUtil.print(actual);
@@ -130,7 +130,7 @@ public class TestReversePolish {
         tokens.add(new Token("/", true));
         tokens.add(new Token("3", false));
 
-        List<Token> actual = new ReversePolish().doSomething(tokens);
+        List<Token> actual = new ReversePolishNotation().process(tokens);
 
         TokenUtil.print(tokens);
         TokenUtil.print(actual);
@@ -161,7 +161,7 @@ public class TestReversePolish {
         tokens.add(new Token("/", true));
         tokens.add(new Token("4", false));
 
-        List<Token> actual = new ReversePolish().doSomething(tokens);
+        List<Token> actual = new ReversePolishNotation().process(tokens);
 
         TokenUtil.print(tokens);
         TokenUtil.print(actual);
@@ -178,7 +178,7 @@ public class TestReversePolish {
         tokens.add(new Token("+", true));
         tokens.add(new Token("2", false));
 
-        List<Token> actual  = new ReversePolish().doSomething(tokens);
+        List<Token> actual  = new ReversePolishNotation().process(tokens);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -189,6 +189,6 @@ public class TestReversePolish {
         tokens.add(new Token("2", false));
         tokens.add(new Token(")", true));
 
-        List<Token> actual = new ReversePolish().doSomething(tokens);
+        List<Token> actual = new ReversePolishNotation().process(tokens);
     }
 }
