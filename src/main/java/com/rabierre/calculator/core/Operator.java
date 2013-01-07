@@ -1,4 +1,4 @@
-package com.rabierre.calculator;
+package com.rabierre.calculator.core;
 
 /**
  * Created with IntelliJ IDEA.
@@ -8,14 +8,21 @@ package com.rabierre.calculator;
  * To change this template use File | Settings | File Templates.
  */
 public enum Operator {
-    PLUS("+"),
-    MINUS("-"),
-    MULTI("*"),
-    DIVIDE("/"),
+    PLUS("\\+"),
+    MINUS("\\-"),
+    MULTI("\\*"),
+    DIVIDE("\\/"),
     POWER("\\^"),
     OPEN_BRACKET("\\("),
     CLOSE_BRACKET("\\)");
 
+    private String value;
+
     Operator(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
     }
 }

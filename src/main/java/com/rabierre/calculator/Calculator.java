@@ -1,5 +1,8 @@
 package com.rabierre.calculator;
 
+import com.rabierre.calculator.core.Token;
+import com.rabierre.calculator.core.TokenUtil;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +14,8 @@ import java.util.Scanner;
  * To change this template use File | Settings | File Templates.
  */
 public class Calculator {
-    private static ValueCollector valueCollector = new ValueCollector();
+    private static SimpleTokenizer tokenizer = new SimpleTokenizer();
+    private static ReversePolish reverser = new ReversePolish();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -22,18 +26,14 @@ public class Calculator {
 
             if (exit(input)) break;
 
-            List<String> values = valueCollector.parse(input);
-            // todo values to reverse polish notation
+            List<Token> tokens = tokenizer.parse(input);
+            TokenUtil.print(tokens);
 
-            //printList(values); // todo test
+            List<Token> reversePolishedTokens = reverser.doSomething(tokens);
+            TokenUtil.print(reversePolishedTokens);
         } while (true);
     }
 
-    private static void printList(List<String> values) {
-        for (String value : values) {
-            System.out.println(value + "\n");
-        }
-    }
 
     private static boolean exit(String arg) {
         if (arg == null) return false;
