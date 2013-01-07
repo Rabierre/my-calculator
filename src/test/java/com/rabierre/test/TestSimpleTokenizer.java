@@ -23,7 +23,7 @@ public class TestSimpleTokenizer {
         List<Token> expect = new ArrayList<>();
         expect.add(new Token("123", false));
 
-        List<Token> actual = new SimpleTokenizer().parse("123");
+        List<Token> actual = new SimpleTokenizer().tokenize("123");
 
         Assert.assertEquals(expect, actual);
     }
@@ -35,14 +35,14 @@ public class TestSimpleTokenizer {
         expect.add(new Token("+", true));
         expect.add(new Token("2", false));
 
-        List<Token> actual = new SimpleTokenizer().parse("1+2");
+        List<Token> actual = new SimpleTokenizer().tokenize("1+2");
 
         Assert.assertEquals(expect, actual);
     }
 
     @Test
     public void testSimpleValueParse3() {
-        List<Token> actual = new SimpleTokenizer().parse("(1+2)");
+        List<Token> actual = new SimpleTokenizer().tokenize("(1+2)");
 
         List<Token> expect = new ArrayList<>();
         expect.add(new Token("(", true));
@@ -56,7 +56,7 @@ public class TestSimpleTokenizer {
 
     @Test
     public void testSimpleValueParse4() {
-        List<Token> actual = new SimpleTokenizer().parse("(1+2)/3");
+        List<Token> actual = new SimpleTokenizer().tokenize("(1+2)/3");
 
         List<Token> expect = new ArrayList<>();
         expect.add(new Token("(", true));

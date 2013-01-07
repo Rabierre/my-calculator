@@ -25,4 +25,12 @@ public enum Operator {
     public String getValue() {
         return value;
     }
+
+    public static boolean isOpenBracket(String value) {
+        return value != null ? OPEN_BRACKET.value.equals(value) : false;
+    }
+
+    public boolean isCloseBracket(String value) {
+        return value != null ? CLOSE_BRACKET.value.equals(value) : false;
+    }
 }

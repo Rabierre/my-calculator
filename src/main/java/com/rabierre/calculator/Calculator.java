@@ -26,7 +26,7 @@ public class Calculator {
 
             if (exit(input)) break;
 
-            List<Token> tokens = tokenizer.parse(input);
+            List<Token> tokens = tokenizer.tokenize(input);
             TokenUtil.print(tokens);
 
             List<Token> reversePolishedTokens = reverser.doSomething(tokens);

@@ -1,6 +1,7 @@
 package com.rabierre.calculator;
 
 import com.rabierre.calculator.core.Token;
+import com.rabierre.calculator.core.TokenUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,39 +15,32 @@ import java.util.List;
  */
 public class SimpleTokenizer {
 
-
-    public List<Token> parse(String args) {
-        List<Token> values = new ArrayList<>();
-        StringBuffer buffer = new StringBuffer();
+    public List<Token> tokenize(String args) {
+        List<Token> tokens = new ArrayList<>();
+        StringBuffer operandBuffer = new StringBuffer();
 
         for (char arg : args.toCharArray()) {
-            if (ValueChecker.isOperator(arg)) {
-                flushBuffer(buffer, values);
-                values.add(tokenize(String.valueOf(arg)));
-            } else {
-                // operands
-                buffer.append(arg);
+            String value = String.valueOf(arg);
+
+            if (TokenUtil.isOperator(value)) {
+                flushBuffer(operandBuffer, tokens);
+                tokens.add(new Token(value, true));
+            } else {    // operand
+                operandBuffer.append(value);
             }
         }
 
-        flushBuffer(buffer, values);
+        flushBuffer(operandBuffer, tokens);
 
-        return values;
+        return tokens;
     }
 
-    public Token tokenize(String value) {
-        if (ValueChecker.isOperator(value)) {
-            return new Token(value, true);
-        } else {
-            return new Token(value, false);
-        }
-    }
+    private void flushBuffer(StringBuffer operandBuffer, List<Token> tokens) {
+        if (operandBuffer.length() > 0) {
+            Token token = new Token(operandBuffer.toString(), false);
+            tokens.add(token);
 
-    private void flushBuffer(StringBuffer buffer, List<Token> values) {
-        if (buffer.length() > 0) {
-            Token token = tokenize(buffer.toString());
-            values.add(token);
-            buffer.delete(0, buffer.length());
+            operandBuffer.delete(0, operandBuffer.length());
         }
     }
 }

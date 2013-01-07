@@ -3,6 +3,8 @@ package com.rabierre.calculator.core;
 import com.rabierre.calculator.core.Token;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,5 +19,12 @@ public class TokenUtil {
             System.out.print(token.getValue());
         }
         System.out.println("");
+    }
+
+    public static boolean isOperator(String arg) {
+        Pattern pattern = Pattern.compile("\\+|\\-|\\*|\\/|\\(|\\)");
+        Matcher match = pattern.matcher(arg);
+
+        return match.matches();
     }
 }
