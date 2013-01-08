@@ -5,6 +5,7 @@ import com.rabierre.calculator.core.Token;
 import com.rabierre.calculator.core.ValueToken;
 
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,29 +15,28 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class Calculator {
-    public void run(List<Token> refined) {
-        // todo
-        for (int i = 0; i < refined.size() - 2; i++) {
-            int first = i;
-            int second = i + 1;
-            int third = i + 2;
 
-            if (!(refined.get(first) instanceof ValueToken) || !(refined.get(second) instanceof ValueToken)) {
-                // todo invalid formula?
-                return;
+    public Token run(List<Token> refined) {
+        Stack<Token> stack = new Stack();
+
+        for (Token token : refined) {
+            // if variable or constant value
+            if (token instanceof ValueToken) {
+                stack.push(token);
+                continue;
             }
 
-            if (refined.get(third) instanceof OperatorToken) {
-                ((OperatorToken) refined.get(third)).calculate(refined.get(first), refined.get(second));
-            } else {
-                // shift, recursive
-                run(refined.subList(first, refined.size()));    // todo fix this
-            }
+            // if operator
+            if (stack.empty()) return token;
+            if (stack.size() < 2) return token;
+
+            Token operand1 = stack.pop();
+            Token operand2 = stack.pop();
+            Token result = ((OperatorToken) token).calculate(operand1, operand2);
+
+            stack.push(result);
         }
-    }
 
-    public void doCalculate(Token operand1, Token operand2, OperatorToken operator) {
-        // todo
-        // do operand1 operator operand2
+        return stack.pop();
     }
 }

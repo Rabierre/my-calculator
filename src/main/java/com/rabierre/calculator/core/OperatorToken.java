@@ -60,7 +60,31 @@ public class OperatorToken implements Token {
         return this.priority >= ((OperatorToken) peek).getPriority();
     }
 
-    public int calculate(Token token1, Token token) {
-        return 0;  //To change body of created methods use File | Settings | File Templates.
+    public Token calculate(Token token1, Token token2) {
+        String operand1 = token1.getValue();
+        String operand2 = token2.getValue();
+
+        double result;
+        switch (value) {
+            case "+":
+                result = Double.parseDouble(operand1) + Double.parseDouble(operand2);
+                break;
+            case "-":
+                result = Double.parseDouble(operand1) - Double.parseDouble(operand2);
+                break;
+            case "*":
+                result = Double.parseDouble(operand1) * Double.parseDouble(operand2);
+                break;
+            case "/":
+                result = Double.parseDouble(operand1) / Double.parseDouble(operand2);
+                break;
+            case "^":
+                result = Math.pow(Double.parseDouble(operand1), Double.parseDouble(operand2));
+                break;
+            default:
+                throw new IllegalArgumentException("");
+        }
+
+        return new ValueToken(String.valueOf(result));
     }
 }
