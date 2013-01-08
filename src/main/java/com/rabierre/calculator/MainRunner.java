@@ -34,14 +34,7 @@ public class MainRunner {
         } while (true);
     }
 
-
     private static boolean exit(String arg) {
-        if (arg == null) return false;
-
-        if ("EXIT".equals(arg.toUpperCase())) {
-            return true;
-        }
-
-        return false;
+        return arg != null ? "EXIT".equals(arg.toUpperCase()) : false;
     }
 }

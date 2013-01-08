@@ -1,7 +1,9 @@
 package com.rabierre.calculator;
 
+import com.rabierre.calculator.core.OperatorToken;
 import com.rabierre.calculator.core.Token;
 import com.rabierre.calculator.core.TokenUtil;
+import com.rabierre.calculator.core.ValueToken;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,7 @@ public class ReversePolishNotation implements Notation {
         int bracketCount = 0;
 
         for (Token token : tokens) {
-            if (!token.isOperator()) {  // token is variable or constant value
+            if (token instanceof ValueToken) {  // token is variable or constant value
                 list.add(token);
                 continue;
             }
@@ -31,19 +33,18 @@ public class ReversePolishNotation implements Notation {
             if (TokenUtil.isOpenBracket(token)) {
                 bracketCount++;
             } else if (TokenUtil.isCloseBracket(token)) {
-                try {
-                    while (!TokenUtil.isOpenBracket(stack.peek())) {
-                        list.add(stack.pop());
+                while (!stack.empty()) {
+                    if (TokenUtil.isOpenBracket(stack.peek())) {
+                        stack.pop();
+                        break;
                     }
-                    stack.pop();    // throw open bracket
-                } catch (Exception e) {
-                    throw new IllegalArgumentException("there are " + Math.abs(bracketCount) + " open bracket is missing.");
+                    list.add(stack.pop());
                 }
 
                 bracketCount--;
                 continue;
 
-            } else if (isPriorityLowerThanStackTop(token)) {
+            } else if (!stack.empty() && !((OperatorToken) token).isHighPriorityThan(stack.peek())) {
                 list.add(stack.pop());
             }
             stack.push(token);
@@ -64,12 +65,5 @@ public class ReversePolishNotation implements Notation {
         } else if (bracketCount < 0) {
             throw new IllegalArgumentException("there are " + Math.abs(bracketCount) + " open bracket is missing.");
         }
-    }
-
-    private boolean isPriorityLowerThanStackTop(Token token) {
-        // todo method name is too long.. maybe this function could be embedded in Token class
-        if (!stack.empty() ? token.getPriority() >= stack.peek().getPriority() : token != null)
-            return false;
-        return true;
     }
 }

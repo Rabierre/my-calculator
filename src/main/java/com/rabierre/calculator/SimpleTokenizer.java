@@ -1,7 +1,9 @@
 package com.rabierre.calculator;
 
+import com.rabierre.calculator.core.OperatorToken;
 import com.rabierre.calculator.core.Token;
 import com.rabierre.calculator.core.TokenUtil;
+import com.rabierre.calculator.core.ValueToken;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,7 @@ public class SimpleTokenizer implements Tokenizer {
 
             if (TokenUtil.isOperator(value)) {
                 flushBuffer(operandBuffer, tokens);
-                tokens.add(new Token(value, true));
+                tokens.add(new OperatorToken(value));
             } else {    // operand
                 operandBuffer.append(value);
             }
@@ -41,7 +43,7 @@ public class SimpleTokenizer implements Tokenizer {
             return;
         }
 
-        tokens.add(new Token(operandBuffer.toString(), false));
+        tokens.add(new ValueToken(operandBuffer.toString()));
         operandBuffer.delete(0, operandBuffer.length());
     }
 }

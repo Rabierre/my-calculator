@@ -1,6 +1,8 @@
 package com.rabierre.calculator;
 
+import com.rabierre.calculator.core.OperatorToken;
 import com.rabierre.calculator.core.Token;
+import com.rabierre.calculator.core.ValueToken;
 
 import java.util.List;
 
@@ -19,23 +21,21 @@ public class Calculator {
             int second = i + 1;
             int third = i + 2;
 
-            if (refined.get(first).isOperator() || refined.get(second).isOperator()) {
-                // todo
-                // invalid formula
+            if (!(refined.get(first) instanceof ValueToken) || !(refined.get(second) instanceof ValueToken)) {
+                // todo invalid formula?
                 return;
             }
 
-            if (refined.get(third).isOperator()) {
-                doCalculate(first, second, third);
-            } else if (!refined.get(third).isOperator()) {
+            if (refined.get(third) instanceof OperatorToken) {
+                ((OperatorToken) refined.get(third)).calculate(refined.get(first), refined.get(second));
+            } else {
                 // shift, recursive
-                run(refined.subList(first, refined.size()));
+                run(refined.subList(first, refined.size()));    // todo fix this
             }
-
         }
     }
 
-    public void doCalculate(int operand1, int operand2, int operator) {
+    public void doCalculate(Token operand1, Token operand2, OperatorToken operator) {
         // todo
         // do operand1 operator operand2
     }

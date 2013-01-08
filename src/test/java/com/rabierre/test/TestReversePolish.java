@@ -1,8 +1,10 @@
 package com.rabierre.test;
 
 import com.rabierre.calculator.ReversePolishNotation;
+import com.rabierre.calculator.core.OperatorToken;
 import com.rabierre.calculator.core.Token;
 import com.rabierre.calculator.core.TokenUtil;
+import com.rabierre.calculator.core.ValueToken;
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -20,16 +22,16 @@ public class TestReversePolish {
     @Test
     public void testSimpleReverse() {
         List<Token> expect = new ArrayList<>();
-        expect.add(new Token("1", false));
-        expect.add(new Token("2", false));
-        expect.add(new Token("+", true));
+        expect.add(new ValueToken("1"));
+        expect.add(new ValueToken("2"));
+        expect.add(new OperatorToken("+"));
 
         List<Token> tokens = new ArrayList<>();
-        tokens.add(new Token("1", false));
-        tokens.add(new Token("+", true));
-        tokens.add(new Token("2", false));
+        tokens.add(new ValueToken("1"));
+        tokens.add(new OperatorToken("+"));
+        tokens.add(new ValueToken("2"));
 
-        List<Token> actual  = new ReversePolishNotation().process(tokens);
+        List<Token> actual = new ReversePolishNotation().process(tokens);
 
         TokenUtil.print(tokens);
         TokenUtil.print(actual);
@@ -40,18 +42,18 @@ public class TestReversePolish {
     @Test
     public void testSimpleReverse2() {
         List<Token> expect = new ArrayList<>();
-        expect.add(new Token("1", false));
-        expect.add(new Token("2", false));
-        expect.add(new Token("3", false));
-        expect.add(new Token("+", true));
-        expect.add(new Token("+", true));
+        expect.add(new ValueToken("1"));
+        expect.add(new ValueToken("2"));
+        expect.add(new ValueToken("3"));
+        expect.add(new OperatorToken("+"));
+        expect.add(new OperatorToken("+"));
 
         List<Token> tokens = new ArrayList<>();
-        tokens.add(new Token("1", false));
-        tokens.add(new Token("+", true));
-        tokens.add(new Token("2", false));
-        tokens.add(new Token("+", true));
-        tokens.add(new Token("3", false));
+        tokens.add(new ValueToken("1"));
+        tokens.add(new OperatorToken("+"));
+        tokens.add(new ValueToken("2"));
+        tokens.add(new OperatorToken("+"));
+        tokens.add(new ValueToken("3"));
 
         List<Token> actual = new ReversePolishNotation().process(tokens);
 
@@ -64,18 +66,18 @@ public class TestReversePolish {
     @Test
     public void testSimpleReverse3() {
         List<Token> expect = new ArrayList<>();
-        expect.add(new Token("1", false));
-        expect.add(new Token("2", false));
-        expect.add(new Token("3", false));
-        expect.add(new Token("/", true));
-        expect.add(new Token("+", true));
+        expect.add(new ValueToken("1"));
+        expect.add(new ValueToken("2"));
+        expect.add(new ValueToken("3"));
+        expect.add(new OperatorToken("/"));
+        expect.add(new OperatorToken("+"));
 
         List<Token> tokens = new ArrayList<>();
-        tokens.add(new Token("1", false));
-        tokens.add(new Token("+", true));
-        tokens.add(new Token("2", false));
-        tokens.add(new Token("/", true));
-        tokens.add(new Token("3", false));
+        tokens.add(new ValueToken("1"));
+        tokens.add(new OperatorToken("+"));
+        tokens.add(new ValueToken("2"));
+        tokens.add(new OperatorToken("/"));
+        tokens.add(new ValueToken("3"));
 
         List<Token> actual = new ReversePolishNotation().process(tokens);
 
@@ -88,47 +90,47 @@ public class TestReversePolish {
     @Test
     public void testSimpleReverse4() {
         List<Token> expect = new ArrayList<>();
-        expect.add(new Token("1", false));
-        expect.add(new Token("2", false));
-        expect.add(new Token("+", true));
-        expect.add(new Token("3", false));
-        expect.add(new Token("/", true));
+        expect.add(new ValueToken("1"));
+        expect.add(new ValueToken("2"));
+        expect.add(new OperatorToken("+"));
+        expect.add(new ValueToken("3"));
+        expect.add(new OperatorToken("/"));
 
         List<Token> tokens = new ArrayList<>();
-        tokens.add(new Token("(", true));
-        tokens.add(new Token("1", false));
-        tokens.add(new Token("+", true));
-        tokens.add(new Token("2", false));
-        tokens.add(new Token(")", true));
-        tokens.add(new Token("/", true));
-        tokens.add(new Token("3", false));
+        tokens.add(new OperatorToken("("));
+        tokens.add(new ValueToken("1"));
+        tokens.add(new OperatorToken("+"));
+        tokens.add(new ValueToken("2"));
+        tokens.add(new OperatorToken(")"));
+        tokens.add(new OperatorToken("/"));
+        tokens.add(new ValueToken("3"));
 
         List<Token> actual = new ReversePolishNotation().process(tokens);
 
         TokenUtil.print(tokens);
         TokenUtil.print(actual);
         System.out.println("");
-        Assert.assertEquals(5, actual.size());
+        Assert.assertEquals(expect.size(), actual.size());
         Assert.assertEquals(expect, actual);
     }
 
     @Test
     public void testSimpleReverse5() {
         List<Token> expect = new ArrayList<>();
-        expect.add(new Token("1", false));
-        expect.add(new Token("2", false));
-        expect.add(new Token("*", true));
-        expect.add(new Token("3", false));
-        expect.add(new Token("/", true));
+        expect.add(new ValueToken("1"));
+        expect.add(new ValueToken("2"));
+        expect.add(new OperatorToken("*"));
+        expect.add(new ValueToken("3"));
+        expect.add(new OperatorToken("/"));
 
         List<Token> tokens = new ArrayList<>();
-        tokens.add(new Token("(", true));
-        tokens.add(new Token("1", false));
-        tokens.add(new Token("*", true));
-        tokens.add(new Token("2", false));
-        tokens.add(new Token(")", true));
-        tokens.add(new Token("/", true));
-        tokens.add(new Token("3", false));
+        tokens.add(new OperatorToken("("));
+        tokens.add(new ValueToken("1"));
+        tokens.add(new OperatorToken("*"));
+        tokens.add(new ValueToken("2"));
+        tokens.add(new OperatorToken(")"));
+        tokens.add(new OperatorToken("/"));
+        tokens.add(new ValueToken("3"));
 
         List<Token> actual = new ReversePolishNotation().process(tokens);
 
@@ -142,24 +144,24 @@ public class TestReversePolish {
     @Test
     public void testSimpleReverse6() {
         List<Token> expect = new ArrayList<>();
-        expect.add(new Token("1", false));
-        expect.add(new Token("2", false));
-        expect.add(new Token("3", false));
-        expect.add(new Token("+", true));
-        expect.add(new Token("4", false));
-        expect.add(new Token("/", true));
-        expect.add(new Token("*", true));
+        expect.add(new ValueToken("1"));
+        expect.add(new ValueToken("2"));
+        expect.add(new ValueToken("3"));
+        expect.add(new OperatorToken("+"));
+        expect.add(new ValueToken("4"));
+        expect.add(new OperatorToken("/"));
+        expect.add(new OperatorToken("*"));
 
         List<Token> tokens = new ArrayList<>();
-        tokens.add(new Token("1", false));
-        tokens.add(new Token("*", true));
-        tokens.add(new Token("(", true));
-        tokens.add(new Token("2", false));
-        tokens.add(new Token("+", true));
-        tokens.add(new Token("3", false));
-        tokens.add(new Token(")", true));
-        tokens.add(new Token("/", true));
-        tokens.add(new Token("4", false));
+        tokens.add(new ValueToken("1"));
+        tokens.add(new OperatorToken("*"));
+        tokens.add(new OperatorToken("("));
+        tokens.add(new ValueToken("2"));
+        tokens.add(new OperatorToken("+"));
+        tokens.add(new ValueToken("3"));
+        tokens.add(new OperatorToken(")"));
+        tokens.add(new OperatorToken("/"));
+        tokens.add(new ValueToken("4"));
 
         List<Token> actual = new ReversePolishNotation().process(tokens);
 
@@ -173,21 +175,21 @@ public class TestReversePolish {
     @Test(expected = IllegalArgumentException.class)
     public void testSimpleReverseException() {
         List<Token> tokens = new ArrayList<>();
-        tokens.add(new Token("(", true));
-        tokens.add(new Token("1", false));
-        tokens.add(new Token("+", true));
-        tokens.add(new Token("2", false));
+        tokens.add(new OperatorToken("("));
+        tokens.add(new ValueToken("1"));
+        tokens.add(new OperatorToken("+"));
+        tokens.add(new ValueToken("2"));
 
-        List<Token> actual  = new ReversePolishNotation().process(tokens);
+        List<Token> actual = new ReversePolishNotation().process(tokens);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testSimpleReverseException2() {
         List<Token> tokens = new ArrayList<>();
-        tokens.add(new Token("1", false));
-        tokens.add(new Token("+", true));
-        tokens.add(new Token("2", false));
-        tokens.add(new Token(")", true));
+        tokens.add(new ValueToken("1"));
+        tokens.add(new OperatorToken("+"));
+        tokens.add(new ValueToken("2"));
+        tokens.add(new OperatorToken(")"));
 
         List<Token> actual = new ReversePolishNotation().process(tokens);
     }
