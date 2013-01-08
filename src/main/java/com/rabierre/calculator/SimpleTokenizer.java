@@ -13,8 +13,9 @@ import java.util.List;
  * Time: 오전 11:15
  * To change this template use File | Settings | File Templates.
  */
-public class SimpleTokenizer {
+public class SimpleTokenizer implements Tokenizer {
 
+    @Override
     public List<Token> tokenize(String args) {
         List<Token> tokens = new ArrayList<>();
         StringBuffer operandBuffer = new StringBuffer();
@@ -36,11 +37,11 @@ public class SimpleTokenizer {
     }
 
     private void flushBuffer(StringBuffer operandBuffer, List<Token> tokens) {
-        if (operandBuffer.length() > 0) {
-            Token token = new Token(operandBuffer.toString(), false);
-            tokens.add(token);
-
-            operandBuffer.delete(0, operandBuffer.length());
+        if (operandBuffer.length() <= 0) {
+            return;
         }
+
+        tokens.add(new Token(operandBuffer.toString(), false));
+        operandBuffer.delete(0, operandBuffer.length());
     }
 }

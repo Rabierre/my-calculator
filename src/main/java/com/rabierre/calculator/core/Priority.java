@@ -8,13 +8,10 @@ package com.rabierre.calculator.core;
  * To change this template use File | Settings | File Templates.
  */
 public enum Priority {
-    PLUS(2),
-    MINUS(2),
-    MULTI(3),
-    DIVIDE(3),
-    POWER(3),
-    OPEN_BRACKET(1),
-    CLOSE_BRACKET(1);
+    LOW(1),
+    MEDIUM(2),
+    HIGH(3),
+    NONE(0);
 
     private int value;
 

@@ -14,39 +14,39 @@ import java.util.Stack;
  * Time: 오후 12:31
  * To change this template use File | Settings | File Templates.
  */
-public class ReversePolishNotation {
+public class ReversePolishNotation implements Notation {
     Stack<Token> stack = new Stack();
 
+    @Override
     public List<Token> process(List<Token> tokens) {
         List<Token> list = new ArrayList<>();
         int bracketCount = 0;
 
         for (Token token : tokens) {
-            if (token.isOperator()) {
-
-                if (TokenUtil.isOpenBracket(token)) {
-                    bracketCount++;
-                } else if (TokenUtil.isCloseBracket(token)) {
-                    bracketCount--;
-
-                    try {
-                        while (!TokenUtil.isOpenBracket(stack.peek())) {
-                            list.add(stack.pop());
-                        }
-                        stack.pop();
-                    } catch (Exception e) {
-                        throw new IllegalArgumentException("there are " + Math.abs(bracketCount) + " open bracket is missing.");
-                    }
-                    continue;
-
-                } else if (isPriorityLower(token)) {
-                    list.add(stack.pop());
-                }
-                stack.push(token);
-
-            } else {    // token is variable
+            if (!token.isOperator()) {  // token is variable or constant value
                 list.add(token);
+                continue;
             }
+
+            if (TokenUtil.isOpenBracket(token)) {
+                bracketCount++;
+            } else if (TokenUtil.isCloseBracket(token)) {
+                try {
+                    while (!TokenUtil.isOpenBracket(stack.peek())) {
+                        list.add(stack.pop());
+                    }
+                    stack.pop();    // throw open bracket
+                } catch (Exception e) {
+                    throw new IllegalArgumentException("there are " + Math.abs(bracketCount) + " open bracket is missing.");
+                }
+
+                bracketCount--;
+                continue;
+
+            } else if (isPriorityLowerThanStackTop(token)) {
+                list.add(stack.pop());
+            }
+            stack.push(token);
         }
 
         while (!stack.empty()) {
@@ -66,7 +66,8 @@ public class ReversePolishNotation {
         }
     }
 
-    private boolean isPriorityLower(Token token) {
+    private boolean isPriorityLowerThanStackTop(Token token) {
+        // todo method name is too long.. maybe this function could be embedded in Token class
         if (!stack.empty() ? token.getPriority() >= stack.peek().getPriority() : token != null)
             return false;
         return true;

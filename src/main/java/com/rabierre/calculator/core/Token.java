@@ -20,14 +20,18 @@ public class Token {
 
     private int orderPriority() {
         switch (value) {
-            case "(": case ")" :
-                return 1;
-            case "+": case "-" :
-                return 2;
-            case "*":case "/": case "^" :
-                return 3;
+            case "(":
+            case ")":
+                return Priority.LOW.getValue();
+            case "+":
+            case "-":
+                return Priority.MEDIUM.getValue();
+            case "*":
+            case "/":
+            case "^":
+                return Priority.HIGH.getValue();
             default:
-                return 0;
+                return Priority.NONE.getValue();
         }
     }
 
