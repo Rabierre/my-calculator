@@ -22,15 +22,22 @@ public class MainRunner {
         String input;
 
         do {
+            System.out.print("input here : ");
             input = scanner.nextLine();
 
             if (exit(input)) break;
 
+            // tokenize first
             List<Token> tokens = tokenizer.tokenize(input);
             TokenUtil.print(tokens);
 
+            // preprocess execution before calculate
             List<Token> reversePolishedTokens = reverser.process(tokens);
             TokenUtil.print(reversePolishedTokens);
+
+            // calculate
+            String result = new Calculator().run(reversePolishedTokens).getValue();
+            System.out.println("result is : " + result);
         } while (true);
     }
 
