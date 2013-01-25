@@ -13,9 +13,10 @@ import java.util.Scanner;
  * Time: 오전 3:24
  * To change this template use File | Settings | File Templates.
  */
-public class MainRunner {
+public class CliShell {
     private static SimpleTokenizer tokenizer = new SimpleTokenizer();
     private static ReversePolishNotation reverser = new ReversePolishNotation();
+    private static Calculator calculator = new Calculator();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -36,7 +37,7 @@ public class MainRunner {
             TokenUtil.print(reversePolishedTokens);
 
             // calculate
-            String result = new Calculator().run(reversePolishedTokens).getValue();
+            String result = calculator.run(reversePolishedTokens).getValue();
             System.out.println("result is : " + result);
         } while (true);
     }
