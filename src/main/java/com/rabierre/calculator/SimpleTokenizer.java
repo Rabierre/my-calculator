@@ -26,19 +26,19 @@ public class SimpleTokenizer implements Tokenizer {
             String value = String.valueOf(arg);
 
             if (TokenUtil.isOperator(value)) {
-                flushBuffer(operandBuffer, tokens);
+                addValueToken(operandBuffer, tokens);
                 tokens.add(new OperatorToken(value));
             } else {    // operand
                 operandBuffer.append(value);
             }
         }
 
-        flushBuffer(operandBuffer, tokens);
+        addValueToken(operandBuffer, tokens);
 
         return tokens;
     }
 
-    private void flushBuffer(StringBuffer operandBuffer, List<Token> tokens) {
+    private void addValueToken(StringBuffer operandBuffer, List<Token> tokens) {
         if (operandBuffer.length() <= 0) {
             return;
         }
