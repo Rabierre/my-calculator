@@ -1,9 +1,7 @@
 package com.rabierre.test;
 
 import com.rabierre.calculator.SimpleTokenizer;
-import com.rabierre.calculator.core.OperatorToken;
-import com.rabierre.calculator.core.Token;
-import com.rabierre.calculator.core.ValueToken;
+import com.rabierre.calculator.core.*;
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -23,7 +21,7 @@ public class TestSimpleTokenizer {
     @Test
     public void testSimpleValueParse() {
         List<Token> expect = new ArrayList<>();
-        expect.add(new ValueToken("123"));
+        expect.add(new IntValueToken(123));
 
         List<Token> actual = new SimpleTokenizer().tokenize("123");
 
@@ -33,9 +31,9 @@ public class TestSimpleTokenizer {
     @Test
     public void testSimpleValueParse2() {
         List<Token> expect = new ArrayList<>();
-        expect.add(new ValueToken("1"));
-        expect.add(new OperatorToken("+"));
-        expect.add(new ValueToken("2"));
+        expect.add(new IntValueToken(1));
+        expect.add(OperatorSet.getOperator(Operator.PLUS));
+        expect.add(new IntValueToken(2));
 
         List<Token> actual = new SimpleTokenizer().tokenize("1+2");
 
@@ -47,11 +45,11 @@ public class TestSimpleTokenizer {
         List<Token> actual = new SimpleTokenizer().tokenize("(1+2)");
 
         List<Token> expect = new ArrayList<>();
-        expect.add(new OperatorToken("("));
-        expect.add(new ValueToken("1"));
-        expect.add(new OperatorToken("+"));
-        expect.add(new ValueToken("2"));
-        expect.add(new OperatorToken(")"));
+        expect.add(OperatorSet.getOperator(Operator.OPEN_BRACKET));
+        expect.add(new IntValueToken(1));
+        expect.add(OperatorSet.getOperator(Operator.PLUS));
+        expect.add(new IntValueToken(2));
+        expect.add(OperatorSet.getOperator(Operator.CLOSE_BRACKET));
 
         Assert.assertEquals(expect, actual);
     }
@@ -61,13 +59,13 @@ public class TestSimpleTokenizer {
         List<Token> actual = new SimpleTokenizer().tokenize("(1+2)/3");
 
         List<Token> expect = new ArrayList<>();
-        expect.add(new OperatorToken("("));
-        expect.add(new ValueToken("1"));
-        expect.add(new OperatorToken("+"));
-        expect.add(new ValueToken("2"));
-        expect.add(new OperatorToken(")"));
-        expect.add(new OperatorToken("/"));
-        expect.add(new ValueToken("3"));
+        expect.add(OperatorSet.getOperator(Operator.OPEN_BRACKET));
+        expect.add(new IntValueToken(1));
+        expect.add(OperatorSet.getOperator(Operator.PLUS));
+        expect.add(new IntValueToken(2));
+        expect.add(OperatorSet.getOperator(Operator.CLOSE_BRACKET));
+        expect.add(OperatorSet.getOperator(Operator.DIVIDE));
+        expect.add(new IntValueToken(3));
 
         Assert.assertEquals(expect, actual);
     }

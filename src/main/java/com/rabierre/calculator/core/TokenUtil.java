@@ -14,9 +14,11 @@ import java.util.regex.Pattern;
  * To change this template use File | Settings | File Templates.
  */
 public class TokenUtil {
+    // todo move TokenFactory
+
     public static void print(List<Token> tokens) {
-        for(Token token : tokens) {
-            System.out.print(token.getValue());
+        for (Token token : tokens) {
+            System.out.print(token.toString());
         }
         System.out.println("");
     }
@@ -28,11 +30,11 @@ public class TokenUtil {
         return match.matches();
     }
 
-    public static boolean isOpenBracket(Token token) {
-        return token != null ? Operator.OPEN_BRACKET.getValue().equals(token.getValue()) : false;
+    public static boolean isOpenBracket(OperatorToken token) {
+        return token != null && Operator.OPEN_BRACKET == token.getOperator();
     }
 
-    public static boolean isCloseBracket(Token token) {
-        return token != null ? Operator.CLOSE_BRACKET.getValue().equals(token.getValue()) : false;
+    public static boolean isCloseBracket(OperatorToken token) {
+        return token != null && Operator.CLOSE_BRACKET == token.getOperator();
     }
 }

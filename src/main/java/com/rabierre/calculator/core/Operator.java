@@ -1,5 +1,7 @@
 package com.rabierre.calculator.core;
 
+import java.util.HashMap;
+
 /**
  * Created with IntelliJ IDEA.
  * User: seojihye
@@ -26,4 +28,19 @@ public enum Operator {
         return value;
     }
 
+    private static HashMap mappingTable = new HashMap();
+
+    static {
+        mappingTable.put("+", PLUS);
+        mappingTable.put("-", MINUS);
+        mappingTable.put("*", MULTI);
+        mappingTable.put("/", DIVIDE);
+        mappingTable.put("^", POWER);
+        mappingTable.put("(", OPEN_BRACKET);
+        mappingTable.put(")", CLOSE_BRACKET);
+    }
+
+    public static Operator getOperator(String value) {
+        return (Operator) mappingTable.get(value);
+    }
 }

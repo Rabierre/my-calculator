@@ -1,9 +1,6 @@
 package com.rabierre.calculator;
 
-import com.rabierre.calculator.core.OperatorToken;
-import com.rabierre.calculator.core.Token;
-import com.rabierre.calculator.core.TokenUtil;
-import com.rabierre.calculator.core.ValueToken;
+import com.rabierre.calculator.core.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,42 +18,43 @@ public class ReversePolishNotation implements Notation {
 
     @Override
     public List<Token> process(List<Token> tokens) {
-        List<Token> list = new ArrayList<>();
+        List<Token> reversed = new ArrayList<>();
         int bracketCount = 0;
 
         for (Token token : tokens) {
             if (token instanceof ValueToken) {  // token is variable or constant value
-                list.add(token);
+                reversed.add(token);
                 continue;
             }
 
-            if (TokenUtil.isOpenBracket(token)) {
+            OperatorToken operator = (OperatorToken) token;
+            if (TokenUtil.isOpenBracket(operator)) {
                 bracketCount++;
-            } else if (TokenUtil.isCloseBracket(token)) {
+            } else if (TokenUtil.isCloseBracket(operator)) {
                 while (!stack.empty()) {
-                    if (TokenUtil.isOpenBracket(stack.peek())) {
+                    if (TokenUtil.isOpenBracket((OperatorToken) stack.peek())) {
                         stack.pop();
                         break;
                     }
-                    list.add(stack.pop());
+                    reversed.add(stack.pop());
                 }
 
                 bracketCount--;
                 continue;
 
-            } else if (!stack.empty() && !((OperatorToken) token).isHighPriorityThan(stack.peek())) {
-                list.add(stack.pop());
+            } else if (!stack.empty() && !((OperatorToken) token).isHighPriorityThan((OperatorToken)stack.peek())) {
+                reversed.add(stack.pop());
             }
             stack.push(token);
         }
 
         while (!stack.empty()) {
-            list.add(stack.pop());
+            reversed.add(stack.pop());
         }
 
         checkBrackets(bracketCount);
 
-        return list;
+        return reversed;
     }
 
     private void checkBrackets(int bracketCount) {

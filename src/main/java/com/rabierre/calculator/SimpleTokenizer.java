@@ -1,9 +1,6 @@
 package com.rabierre.calculator;
 
-import com.rabierre.calculator.core.OperatorToken;
-import com.rabierre.calculator.core.Token;
-import com.rabierre.calculator.core.TokenUtil;
-import com.rabierre.calculator.core.ValueToken;
+import com.rabierre.calculator.core.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,23 +24,30 @@ public class SimpleTokenizer implements Tokenizer {
 
             if (TokenUtil.isOperator(value)) {
                 addValueToken(operandBuffer, tokens);
-                tokens.add(new OperatorToken(value));
+                tokens.add(OperatorSet.getOperator(Operator.getOperator(value)));
             } else {    // operand
                 operandBuffer.append(value);
             }
         }
 
+        // last token always has to be a ValueToken.
         addValueToken(operandBuffer, tokens);
 
         return tokens;
     }
 
     private void addValueToken(StringBuffer operandBuffer, List<Token> tokens) {
-        if (operandBuffer.length() <= 0) {
+        if (operandBuffer.length() <= 0) {  // ignore
             return;
         }
 
-        tokens.add(new ValueToken(operandBuffer.toString()));
+        ValueToken token = ValueTokenFactory.getValueToken(operandBuffer.toString());
+        tokens.add(token);
+
+        clearBuffer(operandBuffer);
+    }
+
+    private void clearBuffer(StringBuffer operandBuffer) {
         operandBuffer.delete(0, operandBuffer.length());
     }
 }

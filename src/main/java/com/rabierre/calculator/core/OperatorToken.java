@@ -7,8 +7,44 @@ package com.rabierre.calculator.core;
  * Time: 오후 2:54
  * To change this template use File | Settings | File Templates.
  */
-public class OperatorToken implements Token {
-    private String value;
+public abstract class OperatorToken implements Token {
+    protected Operator operator;
+    protected Priority priority;
+
+    abstract public int getPriority();
+
+    abstract public Operator getOperator();
+
+    public abstract ValueToken calculate(Number value, Number operand);
+
+    public ValueToken calculate(ValueToken leftOperand, ValueToken rightOperand) {
+        Number leftValue, rightValue;
+
+        if (leftOperand instanceof DoubleValueToken)
+            leftValue = ((DoubleValueToken) leftOperand).getValue();
+        else
+            leftValue = ((IntValueToken) leftOperand).getValue();
+
+        if (rightOperand instanceof DoubleValueToken)
+            rightValue = ((DoubleValueToken) rightOperand).getValue();
+        else
+            rightValue = ((IntValueToken) rightOperand).getValue();
+
+        return calculate(leftValue, rightValue);
+    }
+
+    public boolean isHighPriorityThan(OperatorToken peek) {
+        if (!(peek instanceof OperatorToken)) return false; // or error?
+
+        return this.priority.getValue() >= ((OperatorToken) peek).getPriority();
+    }
+
+    @Override
+    public String toString() {
+        return operator.getValue();
+    }
+
+    /*private String value;
     private int priority;
 
     public OperatorToken(String value) {
@@ -54,37 +90,7 @@ public class OperatorToken implements Token {
         return true;
     }
 
-    public boolean isHighPriorityThan(Token peek) {
-        if (!(peek instanceof OperatorToken)) return false; // or error?
-
-        return this.priority >= ((OperatorToken) peek).getPriority();
-    }
-
     public Token calculate(Token token1, Token token2) {
-        String operand1 = token1.getValue();
-        String operand2 = token2.getValue();
-
-        double result;
-        switch (value) {
-            case "+":
-                result = Double.parseDouble(operand1) + Double.parseDouble(operand2);
-                break;
-            case "-":
-                result = Double.parseDouble(operand1) - Double.parseDouble(operand2);
-                break;
-            case "*":
-                result = Double.parseDouble(operand1) * Double.parseDouble(operand2);
-                break;
-            case "/":
-                result = Double.parseDouble(operand1) / Double.parseDouble(operand2);
-                break;
-            case "^":
-                result = Math.pow(Double.parseDouble(operand1), Double.parseDouble(operand2));
-                break;
-            default:
-                throw new IllegalArgumentException("");
-        }
-
-        return new ValueToken(String.valueOf(result));
-    }
+        return null;
+    }*/
 }

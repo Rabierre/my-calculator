@@ -37,7 +37,7 @@ public class CliShell {
             TokenUtil.print(reversePolishedTokens);
 
             // calculate
-            String result = calculator.run(reversePolishedTokens).getValue();
+            String result = calculator.run(reversePolishedTokens).toString();
             System.out.println("result is : " + result);
         } while (true);
     }
