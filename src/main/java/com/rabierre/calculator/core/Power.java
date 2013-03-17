@@ -7,7 +7,11 @@ package com.rabierre.calculator.core;
  * Time: 오전 4:59
  * To change this template use File | Settings | File Templates.
  */
-public class Power extends OperatorToken{
+public class Power extends OperatorToken {
+    public Power() {
+        this.operator = Operator.POWER;
+        this.priority = Priority.HIGH;
+    }
     @Override
     public int getPriority() {
         return this.priority.getValue();
@@ -19,8 +23,7 @@ public class Power extends OperatorToken{
     }
 
     @Override
-    public ValueToken calculate(Number value, Number operand) {
-        //todo
-        return null;
+    public ValueToken calculate(Number left, Number right) {
+        return new DoubleValueToken( Math.pow(left.doubleValue(), right.doubleValue()) );
     }
 }

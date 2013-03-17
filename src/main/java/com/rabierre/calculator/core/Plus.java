@@ -24,12 +24,10 @@ public class Plus extends OperatorToken {
     }
 
     @Override
-    public ValueToken calculate(Number rightOperand, Number leftOperand) {
-        if (rightOperand instanceof Double)
-            return new DoubleValueToken(((Double) rightOperand) + ((Double) leftOperand));
-        else if (leftOperand instanceof Double)
-            return new DoubleValueToken(((Double) rightOperand) + ((Double) leftOperand));
+    public ValueToken calculate(Number left, Number right) {
+        if (left instanceof Double || right instanceof Double)
+            return new DoubleValueToken(((Double) left) + ((Double) right));
         else
-            return new IntValueToken(((Integer) rightOperand) + ((Integer) leftOperand));
+            return new IntValueToken(((Integer) left) + ((Integer) right));
     }
 }

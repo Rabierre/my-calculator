@@ -22,7 +22,7 @@ public class SimpleTokenizer implements Tokenizer {
         for (char arg : args.toCharArray()) {
             String value = String.valueOf(arg);
 
-            if (TokenUtil.isOperator(value)) {
+            if (TokenUtil.isOperator(value)) {         // todo guard clause
                 addValueToken(operandBuffer, tokens);
                 tokens.add(OperatorSet.getOperator(Operator.getOperator(value)));
             } else {    // operand
@@ -37,7 +37,7 @@ public class SimpleTokenizer implements Tokenizer {
     }
 
     private void addValueToken(StringBuffer operandBuffer, List<Token> tokens) {
-        if (operandBuffer.length() <= 0) {  // ignore
+        if (operandBuffer.length() <= 0) {
             return;
         }
 

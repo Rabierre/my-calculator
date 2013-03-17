@@ -8,5 +8,5 @@ package com.rabierre.calculator.core;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class ValueToken implements Token{
-    abstract Token operate(OperatorToken operator, Token operand);
+    // todo has type: int or double
 }

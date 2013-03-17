@@ -25,9 +25,7 @@ public class Divide extends OperatorToken {
 
     @Override
     public ValueToken calculate(Number leftOperand, Number rightOperand) {
-        if (leftOperand instanceof Double)
-            return new DoubleValueToken(( leftOperand.doubleValue() / rightOperand.doubleValue()));
-        else if (rightOperand instanceof Double)
+        if (leftOperand instanceof Double || rightOperand instanceof Double)
             return new DoubleValueToken(leftOperand.doubleValue() / rightOperand.doubleValue());
         else
             return new IntValueToken((leftOperand.intValue() / rightOperand.intValue()));

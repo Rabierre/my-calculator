@@ -25,9 +25,7 @@ public class Multiply extends OperatorToken {
 
     @Override
     public ValueToken calculate(Number leftOperand, Number rightOperand) {
-        if (leftOperand instanceof Double)
-            return new DoubleValueToken(((Double) leftOperand) * ((Double) leftOperand));
-        else if (rightOperand instanceof Double)
+        if (leftOperand instanceof Double || rightOperand instanceof Double)
             return new DoubleValueToken(((Double) leftOperand) * ((Double) rightOperand));
         else
             return new IntValueToken(((Integer) leftOperand) * ((Integer) rightOperand));

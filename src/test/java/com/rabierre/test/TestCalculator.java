@@ -129,4 +129,21 @@ public class TestCalculator {
 
         assertThat((DoubleValueToken) result, is(new DoubleValueToken(1.5)));
     }
+
+    @Test
+    public void testCalculate6() {
+        // 2^2
+        List<Token> reversed = new ArrayList<>();
+        reversed.add(new IntValueToken(2));
+        reversed.add(new IntValueToken(2));
+        reversed.add(OperatorSet.getOperator(Operator.POWER));
+
+        TokenUtil.print(reversed);
+
+        Token result = new Calculator().run(reversed);
+
+        System.out.println("result : " + result.toString());
+
+        assertThat((DoubleValueToken) result, is(new DoubleValueToken(4.0)));
+    }
 }

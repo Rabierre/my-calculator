@@ -20,6 +20,9 @@ public class OperatorSet {
         operatorMap.put(Operator.POWER, new Power());
         operatorMap.put(Operator.OPEN_BRACKET, new OpenBracket());
         operatorMap.put(Operator.CLOSE_BRACKET, new CloseBracket());
+        // todo
+        // remainder
+        // trigonometric function
     }
 
     public static OperatorToken getOperator(Operator operator) {

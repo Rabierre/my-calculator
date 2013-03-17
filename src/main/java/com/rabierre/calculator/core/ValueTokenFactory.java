@@ -21,7 +21,7 @@ public class ValueTokenFactory {
     }
 
     private static boolean isDouble(String value) {
-        Pattern pattern = Pattern.compile("[0-9]+\\.[0-9]+");
+        Pattern pattern = Pattern.compile("[0-9]+\\.[0-9]+");   // todo
         Matcher matcher = pattern.matcher(value);
 
         return matcher.matches();
