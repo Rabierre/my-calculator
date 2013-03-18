@@ -146,4 +146,34 @@ public class TestCalculator {
 
         assertThat((DoubleValueToken) result, is(new DoubleValueToken(4.0)));
     }
+
+    @Test
+    public void testCalculate7() {
+        // 7%3
+        List<Token> reversed = new ArrayList<>();
+        reversed.add(new IntValueToken(7));
+        reversed.add(new IntValueToken(3));
+        reversed.add(OperatorSet.getOperator(Operator.REMAINDER));
+
+        TokenUtil.print(reversed);
+
+        Token result = new Calculator().run(reversed);
+
+        System.out.println("result : " + result.toString());
+
+        assertThat((IntValueToken) result, is(new IntValueToken(1)));
+
+        reversed = new ArrayList<>();
+        reversed.add(new IntValueToken(7));
+        reversed.add(new DoubleValueToken(3.0));
+        reversed.add(OperatorSet.getOperator(Operator.REMAINDER));
+
+        TokenUtil.print(reversed);
+
+         result = new Calculator().run(reversed);
+
+        System.out.println("result : " + result.toString());
+
+        assertThat((DoubleValueToken) result, is(new DoubleValueToken(1.0)));
+    }
 }

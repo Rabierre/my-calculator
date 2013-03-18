@@ -19,11 +19,6 @@ public class DoubleValueToken extends ValueToken{
     }
 
     @Override
-    public Token operate(OperatorToken operator, Token operand) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
     public String toString() {
         return value + "";
     }

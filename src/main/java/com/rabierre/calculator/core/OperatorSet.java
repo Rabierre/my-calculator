@@ -18,10 +18,10 @@ public class OperatorSet {
         operatorMap.put(Operator.MULTI, new Multiply());
         operatorMap.put(Operator.DIVIDE, new Divide());
         operatorMap.put(Operator.POWER, new Power());
+        operatorMap.put(Operator.REMAINDER, new Remainder());
         operatorMap.put(Operator.OPEN_BRACKET, new OpenBracket());
         operatorMap.put(Operator.CLOSE_BRACKET, new CloseBracket());
         // todo
-        // remainder
         // trigonometric function
     }
 

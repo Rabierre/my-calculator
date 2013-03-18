@@ -9,6 +9,7 @@ package com.rabierre.calculator.core;
  */
 public class Divide extends OperatorToken {
     public Divide() {
+        // todo move this
         this.operator = Operator.DIVIDE;
         this.priority = Priority.HIGH;
     }

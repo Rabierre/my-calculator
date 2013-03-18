@@ -19,25 +19,6 @@ public class IntValueToken extends ValueToken {
     }
 
     @Override
-    public ValueToken operate(OperatorToken operator, Token operand) {
-        // todo test
-        if (operand instanceof DoubleValueToken)
-            return operate(operator.getOperator(), ((DoubleValueToken) operand).getValue());
-        else
-            return operate(operator.getOperator(), ((IntValueToken) operand).getValue());
-    }
-
-    private ValueToken operate(Operator operator, Double operand) {
-        // todo test
-        return OperatorSet.getOperator(operator).calculate(value, operand);
-    }
-
-    private ValueToken operate(Operator operator, Integer operand) {
-        // todo test
-        return OperatorSet.getOperator(operator).calculate(value, operand);
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof IntValueToken)) return false;

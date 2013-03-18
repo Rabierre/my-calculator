@@ -17,6 +17,7 @@ public class TokenUtil {
     // todo move TokenFactory
 
     public static void print(List<Token> tokens) {
+        // todo move list of tokens to equation class
         for (Token token : tokens) {
             System.out.print(token.toString());
         }

@@ -15,6 +15,7 @@ public enum Operator {
     MULTI("*"),
     DIVIDE("/"),
     POWER("^"),
+    REMAINDER("%"),
     OPEN_BRACKET("("),
     CLOSE_BRACKET(")");
 
@@ -36,6 +37,7 @@ public enum Operator {
         mappingTable.put("*", MULTI);
         mappingTable.put("/", DIVIDE);
         mappingTable.put("^", POWER);
+        mappingTable.put("%", REMAINDER);
         mappingTable.put("(", OPEN_BRACKET);
         mappingTable.put(")", CLOSE_BRACKET);
     }
