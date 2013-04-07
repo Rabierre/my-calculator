@@ -14,7 +14,7 @@ public class DoubleValueToken extends ValueToken{
         this.value = value;
     }
 
-    public Double getValue() {
+    public Number getValue() {
         return value;
     }
 

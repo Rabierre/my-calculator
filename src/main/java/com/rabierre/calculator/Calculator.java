@@ -1,6 +1,5 @@
 package com.rabierre.calculator;
 
-import com.rabierre.calculator.core.IntValueToken;
 import com.rabierre.calculator.core.OperatorToken;
 import com.rabierre.calculator.core.Token;
 import com.rabierre.calculator.core.ValueToken;
@@ -27,17 +26,19 @@ public class Calculator {
                 continue;
             }
 
+            // calculation over
+            if (stack.size() == 1) return token;
+
             // if operator
-            if (stack.size() < 2) return token;
 
             // stack pop makes order revered, so first ValueToken is right operand
-            // this order is important when operate division.
+            // this order is important when operate division, remainder and power.
             ValueToken operand2 = (ValueToken) stack.pop();
             ValueToken operand1 = (ValueToken) stack.pop();
 
             OperatorToken operator = ((OperatorToken) token);
 
-            ValueToken result = operator.calculate(operand1, operand2);
+            ValueToken result = operator.calculate(operand1.getValue(), operand2.getValue());
 
             stack.push(result);
         }

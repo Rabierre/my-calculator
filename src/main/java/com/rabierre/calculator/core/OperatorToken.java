@@ -17,25 +17,6 @@ public abstract class OperatorToken implements Token {
 
     public abstract ValueToken calculate(Number leftValue, Number rightValue);
 
-    public ValueToken calculate(ValueToken leftOperand, ValueToken rightOperand) {
-        Number leftValue, rightValue;
-
-        // left
-        // todo extract
-        if (leftOperand instanceof DoubleValueToken)
-            leftValue = ((DoubleValueToken) leftOperand).getValue();
-        else
-            leftValue = ((IntValueToken) leftOperand).getValue();
-
-        // right
-        if (rightOperand instanceof DoubleValueToken)
-            rightValue = ((DoubleValueToken) rightOperand).getValue();
-        else
-            rightValue = ((IntValueToken) rightOperand).getValue();
-
-        return calculate(leftValue, rightValue);
-    }
-
     public boolean isHighPriorityThan(OperatorToken peek) {
         if (!(peek instanceof OperatorToken)) return false; // or error?
 

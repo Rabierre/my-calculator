@@ -14,7 +14,7 @@ public class IntValueToken extends ValueToken {
         this.value = value;
     }
 
-    public Integer getValue() {
+    public Number getValue() {
         return value;
     }
 
