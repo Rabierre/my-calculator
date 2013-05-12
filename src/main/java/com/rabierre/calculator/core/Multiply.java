@@ -1,5 +1,8 @@
 package com.rabierre.calculator.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: seojihye

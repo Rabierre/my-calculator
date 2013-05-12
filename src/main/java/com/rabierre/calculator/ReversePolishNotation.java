@@ -14,10 +14,10 @@ import java.util.Stack;
  * To change this template use File | Settings | File Templates.
  */
 public class ReversePolishNotation implements Notation {
-    Stack<Token> stack = new Stack();
+    private Stack<Token> stack = new Stack();
 
     @Override
-    public List<Token> process(List<Token> tokens) {
+    public List<Token> reverse(List<Token> tokens) {
         List<Token> reversed = new ArrayList<>();
         int bracketCount = 0;
 

@@ -1,7 +1,6 @@
 package com.rabierre.calculator;
 
 import com.rabierre.calculator.core.Token;
-import com.rabierre.calculator.core.TokenUtil;
 
 import java.util.List;
 import java.util.Scanner;
@@ -14,8 +13,8 @@ import java.util.Scanner;
  * To change this template use File | Settings | File Templates.
  */
 public class CliShell {
-    private static SimpleTokenizer tokenizer = new SimpleTokenizer();
-    private static ReversePolishNotation reverser = new ReversePolishNotation();
+    private static ValueOperatorTokenizer tokenizer = new ValueOperatorTokenizer();
+    private static ReversePolishNotation reverseNotation = new ReversePolishNotation();
     private static Calculator calculator = new Calculator();
 
     public static void main(String[] args) {
@@ -28,13 +27,13 @@ public class CliShell {
 
             if (exit(input)) break;
 
-            // tokenize first
-            List<Token> tokens = tokenizer.tokenize(input);
-            TokenUtil.print(tokens);
+            // todo 입력은 중위 표현식으로 한정
+            List<Token> infixedTokens = tokenizer.tokenize(input);
+            //TokenUtil.print(infixedTokens);
 
             // preprocess execution before calculate
-            List<Token> reversePolishedTokens = reverser.process(tokens);
-            TokenUtil.print(reversePolishedTokens);
+            List<Token> reversePolishedTokens = reverseNotation.reverse(infixedTokens);
+            //TokenUtil.print(reversePolishedTokens);
 
             // calculate
             String result = calculator.run(reversePolishedTokens).toString();

@@ -12,5 +12,5 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface Notation {
-    List<Token> process(List<Token> tokens);
+    List<Token> reverse(List<Token> tokens);
 }

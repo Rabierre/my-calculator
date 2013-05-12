@@ -25,7 +25,7 @@ public class TokenUtil {
     }
 
     public static boolean isOperator(String arg) {
-        Pattern pattern = Pattern.compile("\\+|\\-|\\*|\\/|\\(|\\)");   // todo
+        Pattern pattern = Pattern.compile("\\+|\\-|\\*|\\/|\\%|\\^|\\(|\\)");   // todo move to OperatorTokenFactory
         Matcher match = pattern.matcher(arg);
 
         return match.matches();
