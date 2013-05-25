@@ -18,31 +18,24 @@ import static com.rabierre.util.TokenUtil.createTokens;
  * To change this template use File | Settings | File Templates.
  */
 public class TestReversePolish {
-    private ReversePolishNotation reverser = new ReversePolishNotation();
+    private ReversePolishNotation reverser;
 
-    @Test
-    public void reverseEquationWithTwoVariable() {
-        // 1+2
-        List<Token> actual =
-                reverser.reverse(createTokens("1 + 2"));
-
-        // 12+
-        List<Token> expect = createTokens("1 2 +");
-
-        TokenUtil.print(actual);
-        Assert.assertEquals(expect, actual);
+    @Before
+    public void setup(){
+        reverser = new ReversePolishNotation();
     }
-
+    
     @Test
-    public void reverseSamePriority() {
-        // 1+2+3
-        List<Token> actual =
-                reverser.reverse(createTokens("1 + 2 + 3"));
-        // 123++
-        List<Token> expect = createTokens("1 2 3 + +");
-
-        TokenUtil.print(actual);
-        Assert.assertEquals(expect, actual);
+    public void normalCaseWithUnaryOprator() {
+        // todo 
+        Assert.assertEquals(
+            createTokens("1 2 +"), reverser.reverse(createTokens("1 + 2"));
+    }
+        
+    @Test
+    public void normalCaseWithSameLevelPriorities() {
+        Assert.assertEquals(
+            createTokens("1 + 2 + 3"), reverser.reverse(createTokens("1 2 3 + +"));
     }
 
     @Test
