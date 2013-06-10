@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class TokenUtil {
 
-    public static List<Token> createTokens(String equation) {
+    public static List<Token> createMockTokens(String equation) {
         return new SimpleTokenizer().tokenize(equation);
     }
 }

@@ -1,15 +1,12 @@
 package com.rabierre.test;
 
 import com.rabierre.calculator.Calculator;
-import com.rabierre.calculator.ReversePolishNotation;
 import com.rabierre.calculator.core.*;
-import junit.framework.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.rabierre.util.TokenUtil.createTokens;
+import static com.rabierre.util.TokenUtil.createMockTokens;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -25,7 +22,7 @@ public class TestCalculator {
     @Test
     public void testCalculate() {
         // 1+2 -> 12+
-        List<Token> tokens = createTokens("1 2 +");
+        List<Token> tokens = createMockTokens("1 2 +");
 
         Token actual = new Calculator().run(tokens);
 
@@ -36,7 +33,7 @@ public class TestCalculator {
     @Test
     public void testCalculate2() {
         // 1+2+3 -> 123++
-        List<Token> tokens = createTokens("1 2 3 + +");
+        List<Token> tokens = createMockTokens("1 2 3 + +");
 
         Token actual = new Calculator().run(tokens);
 
@@ -47,7 +44,7 @@ public class TestCalculator {
     @Test
     public void testCalculate3() {
         // (1+2)/3 -> 12+3/
-        List<Token> tokens = createTokens("1 2 + 3 /");
+        List<Token> tokens = createMockTokens("1 2 + 3 /");
 
         Token actual = new Calculator().run(tokens);
 
@@ -58,7 +55,7 @@ public class TestCalculator {
     @Test
     public void testCalculate4() {
         // 1*2/3 -> 12*3/
-        List<Token> reversed = createTokens("1 2 * 3 /");
+        List<Token> reversed = createMockTokens("1 2 * 3 /");
 
         Token result = new Calculator().run(reversed);
 
@@ -69,7 +66,7 @@ public class TestCalculator {
     @Test
     public void testCalculate5() {
         // (1+2)/2.0 -> 12+2.0/
-        List<Token> reversed = createTokens("1 2 + 2.0 /");
+        List<Token> reversed = createMockTokens("1 2 + 2.0 /");
 
         Token result = new Calculator().run(reversed);
 
@@ -80,7 +77,7 @@ public class TestCalculator {
     @Test
     public void testCalculate6() {
         // 2^2 -> 2 2 ^
-        List<Token> reversed = createTokens("2 2 ^");
+        List<Token> reversed = createMockTokens("2 2 ^");
 
         Token result = new Calculator().run(reversed);
 
@@ -91,7 +88,7 @@ public class TestCalculator {
     @Test
     public void testCalculate7() {
         // 7%3 -> 73%
-        List<Token> reversed = createTokens("7 3 %");         // todo createReverseTokens
+        List<Token> reversed = createMockTokens("7 3 %");         // todo createReverseTokens
 
         Token result = new Calculator().run(reversed);
 
@@ -102,7 +99,7 @@ public class TestCalculator {
     @Test
     public void testCalculate8() {
         // 7%3.0 -> 7 3.0 %
-        List<Token> reversed = createTokens("7 3.0 %");
+        List<Token> reversed = createMockTokens("7 3.0 %");
 
         Token result = new Calculator().run(reversed);
 

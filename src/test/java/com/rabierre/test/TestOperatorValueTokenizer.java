@@ -5,10 +5,9 @@ import com.rabierre.calculator.core.*;
 import junit.framework.Assert;
 import org.junit.Test;
 
-import static com.rabierre.util.TokenUtil.createTokens;
+import static com.rabierre.util.TokenUtil.createMockTokens;
 import static org.junit.Assert.assertThat;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +20,7 @@ import java.util.List;
 public class TestOperatorValueTokenizer {
     @Test
     public void testSimpleValueParse() {
-        List<Token> expect = createTokens("123");
+        List<Token> expect = createMockTokens("123");
 
         List<Token> actual = new ValueOperatorTokenizer().tokenize("123");
 
@@ -32,7 +31,7 @@ public class TestOperatorValueTokenizer {
     public void testSimpleValueParse2() {
         List<Token> actual = new ValueOperatorTokenizer().tokenize("1+2");
 
-        List<Token> expect = createTokens("1 + 2");
+        List<Token> expect = createMockTokens("1 + 2");
 
         Assert.assertEquals(expect, actual);
     }
@@ -41,7 +40,7 @@ public class TestOperatorValueTokenizer {
     public void testSimpleValueParse3() {
         List<Token> actual = new ValueOperatorTokenizer().tokenize("(1+2)");
 
-        List<Token> expect = createTokens("( 1 + 2 )");
+        List<Token> expect = createMockTokens("( 1 + 2 )");
 
         Assert.assertEquals(expect, actual);
     }
@@ -50,7 +49,7 @@ public class TestOperatorValueTokenizer {
     public void testSimpleValueParse4() {
         List<Token> actual = new ValueOperatorTokenizer().tokenize("(1+2)/3");
 
-        List<Token> expect = createTokens("( 1 + 2 ) / 3");
+        List<Token> expect = createMockTokens("( 1 + 2 ) / 3");
 
         Assert.assertEquals(expect, actual);
     }
