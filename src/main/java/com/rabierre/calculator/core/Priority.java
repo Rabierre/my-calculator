@@ -1,11 +1,7 @@
 package com.rabierre.calculator.core;
 
 /**
- * Created with IntelliJ IDEA.
- * User: seojihye
- * Date: 13. 1. 5.
- * Time: 오전 10:56
- * To change this template use File | Settings | File Templates.
+ * @author rabierre
  */
 public enum Priority {
     LOW(1),

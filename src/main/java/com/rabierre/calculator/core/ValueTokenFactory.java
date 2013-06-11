@@ -6,11 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created with IntelliJ IDEA.
- * User: seojihye
- * Date: 13. 2. 12.
- * Time: 오전 6:03
- * To change this template use File | Settings | File Templates.
+ * @author rabierre
  */
 public class ValueTokenFactory {
     public static ValueToken getValueToken(String value) {

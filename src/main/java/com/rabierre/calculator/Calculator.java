@@ -8,11 +8,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * Created with IntelliJ IDEA.
- * User: seojihye
- * Date: 13. 1. 7.
- * Time: 오후 10:40
- * To change this template use File | Settings | File Templates.
+ * @author rabierre
  */
 public class Calculator {
 
@@ -43,6 +39,7 @@ public class Calculator {
             stack.push(result);
         }
 
+        // todo print result here
         return stack.pop();
     }
 }

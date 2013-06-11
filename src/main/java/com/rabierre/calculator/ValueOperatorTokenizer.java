@@ -6,11 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: seojihye
- * Date: 13. 1. 5.
- * Time: 오전 11:15
- * To change this template use File | Settings | File Templates.
+ * @author rabierre
  */
 public class ValueOperatorTokenizer implements Tokenizer {
 

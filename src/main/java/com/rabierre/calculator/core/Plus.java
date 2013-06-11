@@ -1,11 +1,7 @@
 package com.rabierre.calculator.core;
 
 /**
- * Created with IntelliJ IDEA.
- * User: seojihye
- * Date: 13. 2. 12.
- * Time: 오전 4:57
- * To change this template use File | Settings | File Templates.
+ * @author rabierre
  */
 public class Plus extends OperatorToken {
     public Plus() {

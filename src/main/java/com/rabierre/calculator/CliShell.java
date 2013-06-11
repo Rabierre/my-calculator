@@ -6,11 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Created with IntelliJ IDEA.
- * User: seojihye
- * Date: 12. 8. 23.
- * Time: 오전 3:24
- * To change this template use File | Settings | File Templates.
+ * @author rabierre
  */
 public class CliShell {
     private static ValueOperatorTokenizer tokenizer = new ValueOperatorTokenizer();
@@ -25,17 +21,15 @@ public class CliShell {
             System.out.print("input here : ");
             input = scanner.nextLine();
 
+            // todo input check
             if (exit(input)) break;
 
-            // todo 입력은 중위 표현식으로 한정
-            List<Token> infixedTokens = tokenizer.tokenize(input);
-            //TokenUtil.print(infixedTokens);
+            // INFO 입력은 중위 표현식으로 한정
+            List<Token> infixTokens = tokenizer.tokenize(input);
 
-            // preprocess execution before calculate
-            List<Token> reversePolishedTokens = reverseNotation.reverse(infixedTokens);
-            //TokenUtil.print(reversePolishedTokens);
+            // change into reverse notation for easy calculate in machine side
+            List<Token> reversePolishedTokens = reverseNotation.reverse(infixTokens);
 
-            // calculate
             String result = calculator.run(reversePolishedTokens).toString();
             System.out.println("result is : " + result);
         } while (true);

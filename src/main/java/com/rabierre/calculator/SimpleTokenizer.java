@@ -6,11 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: seojihye
- * Date: 13. 5. 13.
- * Time: 오전 12:27
- * To change this template use File | Settings | File Templates.
+ * @author rabierre
  */
 public class SimpleTokenizer implements Tokenizer {
     public List<Token> tokenize(String equation) {

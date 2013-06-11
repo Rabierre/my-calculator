@@ -7,11 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created with IntelliJ IDEA.
- * User: seojihye
- * Date: 13. 1. 7.
- * Time: 오후 2:12
- * To change this template use File | Settings | File Templates.
+ * @author rabierre
  */
 public class TokenUtil {
     // todo move TokenFactory

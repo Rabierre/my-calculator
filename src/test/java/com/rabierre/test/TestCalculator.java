@@ -2,6 +2,7 @@ package com.rabierre.test;
 
 import com.rabierre.calculator.Calculator;
 import com.rabierre.calculator.core.*;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -11,20 +12,24 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Created with IntelliJ IDEA.
- * User: seojihye
- * Date: 12. 10. 7.
- * Time: 오전 5:18
- * To change this template use File | Settings | File Templates.
+ * @author rabierre
  */
 // todo test case rename
 public class TestCalculator {
+    private Calculator calculator;
+
+    @Before
+    public void setup() {
+        calculator = new Calculator();
+    }
+
+    // todo refactor here
     @Test
     public void testCalculate() {
         // 1+2 -> 12+
         List<Token> tokens = createMockTokens("1 2 +");
 
-        Token actual = new Calculator().run(tokens);
+        Token actual = calculator.run(tokens);
 
         System.out.println("result : " + actual.toString());
         assertThat(actual, is((Token)new IntValueToken(3)));
@@ -35,10 +40,10 @@ public class TestCalculator {
         // 1+2+3 -> 123++
         List<Token> tokens = createMockTokens("1 2 3 + +");
 
-        Token actual = new Calculator().run(tokens);
+        Token actual = calculator.run(tokens);
 
         System.out.println("result : " + actual.toString());
-        assertThat(actual, is((Token)new IntValueToken(6)));
+        assertThat((IntValueToken) actual, is(new IntValueToken(6)));
     }
 
     @Test
@@ -46,7 +51,7 @@ public class TestCalculator {
         // (1+2)/3 -> 12+3/
         List<Token> tokens = createMockTokens("1 2 + 3 /");
 
-        Token actual = new Calculator().run(tokens);
+        Token actual = calculator.run(tokens);
 
         System.out.println("result : " + actual.toString());
         assertThat(actual, is((Token)new IntValueToken(1)));
@@ -57,7 +62,7 @@ public class TestCalculator {
         // 1*2/3 -> 12*3/
         List<Token> reversed = createMockTokens("1 2 * 3 /");
 
-        Token result = new Calculator().run(reversed);
+        Token result = calculator.run(reversed);
 
         System.out.println("result : " + result.toString());
         assertThat(result, is((Token)new IntValueToken(0)));
@@ -68,7 +73,7 @@ public class TestCalculator {
         // (1+2)/2.0 -> 12+2.0/
         List<Token> reversed = createMockTokens("1 2 + 2.0 /");
 
-        Token result = new Calculator().run(reversed);
+        Token result = calculator.run(reversed);
 
         System.out.println("result : " + result.toString());
         assertThat(result, is((Token)new DoubleValueToken(1.5)));
@@ -79,7 +84,7 @@ public class TestCalculator {
         // 2^2 -> 2 2 ^
         List<Token> reversed = createMockTokens("2 2 ^");
 
-        Token result = new Calculator().run(reversed);
+        Token result = calculator.run(reversed);
 
         System.out.println("result : " + result.toString());
         assertThat(result, is((Token)new DoubleValueToken(4.0)));
@@ -90,7 +95,7 @@ public class TestCalculator {
         // 7%3 -> 73%
         List<Token> reversed = createMockTokens("7 3 %");         // todo createReverseTokens
 
-        Token result = new Calculator().run(reversed);
+        Token result = calculator.run(reversed);
 
         System.out.println("result : " + result.toString());
         assertThat(result, is((Token)new IntValueToken(1)));
@@ -101,7 +106,7 @@ public class TestCalculator {
         // 7%3.0 -> 7 3.0 %
         List<Token> reversed = createMockTokens("7 3.0 %");
 
-        Token result = new Calculator().run(reversed);
+        Token result = calculator.run(reversed);
 
         System.out.println("result : " + result.toString());
         assertThat(result, is((Token)new DoubleValueToken(1.0)));

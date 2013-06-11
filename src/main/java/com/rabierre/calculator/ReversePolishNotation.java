@@ -7,11 +7,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * Created with IntelliJ IDEA.
- * User: seojihye
- * Date: 13. 1. 7.
- * Time: 오후 12:31
- * To change this template use File | Settings | File Templates.
+ * @author rabierre
  */
 public class ReversePolishNotation implements Notation {
     private Stack<Token> stack = new Stack();

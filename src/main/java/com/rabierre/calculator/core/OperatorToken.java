@@ -1,11 +1,7 @@
 package com.rabierre.calculator.core;
 
 /**
- * Created with IntelliJ IDEA.
- * User: seojihye
- * Date: 13. 1. 8.
- * Time: 오후 2:54
- * To change this template use File | Settings | File Templates.
+ * @author rabierre
  */
 public abstract class OperatorToken implements Token {
     protected Operator operator;

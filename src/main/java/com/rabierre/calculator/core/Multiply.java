@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: seojihye
- * Date: 13. 2. 12.
- * Time: 오전 4:58
- * To change this template use File | Settings | File Templates.
+ * @author rabierre
  */
 public class Multiply extends OperatorToken {
     public Multiply() {
