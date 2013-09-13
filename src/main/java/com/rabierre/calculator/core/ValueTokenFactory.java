@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
  */
 public class ValueTokenFactory {
     public static ValueToken getValueToken(String value) {
+        value = value.trim();
+
         if (isDouble(value))
             return new DoubleValueToken(Double.parseDouble(value));
         else

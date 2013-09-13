@@ -22,8 +22,8 @@ public class Plus extends OperatorToken {
     @Override
     public ValueToken calculate(Number left, Number right) {
         if (left instanceof Double || right instanceof Double)
-            return new DoubleValueToken(((Double) left) + ((Double) right));
+            return new DoubleValueToken(left.doubleValue() + right.doubleValue());
         else
-            return new IntValueToken(((Integer) left) + ((Integer) right));
+            return new IntValueToken(left.intValue() + right.intValue());
     }
 }

@@ -22,8 +22,8 @@ public class Minus extends OperatorToken {
     @Override
     public ValueToken calculate(Number leftOperand, Number rightOperand) {
         if (leftOperand instanceof Double || rightOperand instanceof Double)
-            return new DoubleValueToken(((Double) leftOperand) - ((Double) rightOperand));
+            return new DoubleValueToken(leftOperand.doubleValue() - rightOperand.doubleValue());
         else
-            return new IntValueToken(((Integer) leftOperand) - ((Integer) rightOperand));
+            return new IntValueToken(leftOperand.intValue() - rightOperand.intValue());
     }
 }

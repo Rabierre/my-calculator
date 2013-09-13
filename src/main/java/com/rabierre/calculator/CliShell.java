@@ -10,7 +10,6 @@ import java.util.Scanner;
  */
 public class CliShell {
     private static ValueOperatorTokenizer tokenizer = new ValueOperatorTokenizer();
-    private static ReversePolishNotation reverseNotation = new ReversePolishNotation();
     private static Calculator calculator = new Calculator();
 
     public static void main(String[] args) {
@@ -28,9 +27,9 @@ public class CliShell {
             List<Token> infixTokens = tokenizer.tokenize(input);
 
             // change into reverse notation for easy calculate in machine side
-            List<Token> reversePolishedTokens = reverseNotation.reverse(infixTokens);
+            //List<Token> reversePolishedTokens = reverseNotation.reverse(infixTokens);
 
-            String result = calculator.run(reversePolishedTokens).toString();
+            String result = calculator.run(infixTokens).toString();
             System.out.println("result is : " + result);
         } while (true);
     }

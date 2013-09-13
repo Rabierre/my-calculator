@@ -11,7 +11,7 @@ public abstract class OperatorToken implements Token {
 
     abstract public Operator getOperator();
 
-    public abstract ValueToken calculate(Number leftValue, Number rightValue);
+    public abstract ValueToken calculate(Number val1, Number val2);
 
     public boolean isHighPriorityThan(OperatorToken peek) {
         if (!(peek instanceof OperatorToken)) return false; // or error?
