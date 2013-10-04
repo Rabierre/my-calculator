@@ -3,9 +3,9 @@ package com.rabierre.calculator.core;
 /**
  * @author rabierre
  */
-public class CloseBracket extends OperatorToken{
-    public CloseBracket(){
-        this.operator = Operator.CLOSE_BRACKET;
+public class CloseParenthesis extends OperatorToken{
+    public CloseParenthesis(){
+        this.operator = Operator.CLOSE_PARENTHESIS;
         this.priority = Priority.LOW;
     }
 
@@ -21,6 +21,6 @@ public class CloseBracket extends OperatorToken{
 
     @Override
     public ValueToken calculate(Number value, Number operand) {
-        return null;
+        return null;  // todo throw exception?
     }
 }

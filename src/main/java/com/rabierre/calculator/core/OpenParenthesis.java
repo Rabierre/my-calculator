@@ -3,9 +3,9 @@ package com.rabierre.calculator.core;
 /**
  * @author rabierre
  */
-public class OpenBracket extends OperatorToken {
-    public OpenBracket() {
-        this.operator = Operator.OPEN_BRACKET;
+public class OpenParenthesis extends OperatorToken {
+    public OpenParenthesis() {
+        this.operator = Operator.OPEN_PARENTHESIS;
         this.priority = Priority.LOW;
     }
 
@@ -21,6 +21,6 @@ public class OpenBracket extends OperatorToken {
 
     @Override
     public ValueToken calculate(Number value, Number operand) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;  // todo throw exception?
     }
 }

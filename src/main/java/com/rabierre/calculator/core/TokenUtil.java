@@ -1,7 +1,5 @@
 package com.rabierre.calculator.core;
 
-import com.rabierre.calculator.core.Token;
-
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,10 +26,10 @@ public class TokenUtil {
     }
 
     public static boolean isOpenBracket(OperatorToken token) {
-        return token != null && Operator.OPEN_BRACKET == token.getOperator();
+        return token != null && Operator.OPEN_PARENTHESIS == token.getOperator();
     }
 
     public static boolean isCloseBracket(OperatorToken token) {
-        return token != null && Operator.CLOSE_BRACKET == token.getOperator();
+        return token != null && Operator.CLOSE_PARENTHESIS == token.getOperator();
     }
 }

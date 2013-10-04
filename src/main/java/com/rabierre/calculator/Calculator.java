@@ -5,7 +5,6 @@ import com.rabierre.calculator.core.OperatorToken;
 import com.rabierre.calculator.core.Token;
 import com.rabierre.calculator.core.ValueToken;
 
-import java.util.Deque;
 import java.util.List;
 import java.util.Stack;
 
@@ -25,11 +24,11 @@ public class Calculator {
             }
 
             OperatorToken o = (OperatorToken) token;
-            if (Operator.OPEN_BRACKET == o.getOperator()) {
+            if (Operator.OPEN_PARENTHESIS == o.getOperator()) {
                 operators.push(o);
                 bracketCnt++;
-            } else if (Operator.CLOSE_BRACKET == o.getOperator()) {
-                while (operators.peek().getOperator() != Operator.OPEN_BRACKET) {
+            } else if (Operator.CLOSE_PARENTHESIS == o.getOperator()) {
+                while (operators.peek().getOperator() != Operator.OPEN_PARENTHESIS) {
                     operate();
                 }
                 operators.pop();

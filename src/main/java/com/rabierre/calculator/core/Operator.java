@@ -12,8 +12,8 @@ public enum Operator {
     DIVIDE("/"),
     POWER("^"),
     REMAINDER("%"),
-    OPEN_BRACKET("("),
-    CLOSE_BRACKET(")");
+    OPEN_PARENTHESIS("("),
+    CLOSE_PARENTHESIS(")");
 
     private String value;
 
@@ -34,8 +34,8 @@ public enum Operator {
         mappingTable.put("/", DIVIDE);
         mappingTable.put("^", POWER);
         mappingTable.put("%", REMAINDER);
-        mappingTable.put("(", OPEN_BRACKET);
-        mappingTable.put(")", CLOSE_BRACKET);
+        mappingTable.put("(", OPEN_PARENTHESIS);
+        mappingTable.put(")", CLOSE_PARENTHESIS);
     }
 
     public static Operator getOperator(String value) {
